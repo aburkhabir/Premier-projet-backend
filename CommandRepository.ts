@@ -22,4 +22,12 @@ export class CommandRepository {
         }
         return result.rows[0];
     }
+
+    async updateCommandById(id: number, command: updateCommand): Promise<void> {
+        const { commandName, commandDescription } = command;
+        await pool.query(
+            'UPDATE commands SET command_name = $1, command_description = $2 WHERE id = $3',
+            [commandName, commandDescription, id]
+        );
+    }
 }
