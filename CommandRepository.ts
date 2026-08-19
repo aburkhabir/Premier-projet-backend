@@ -29,4 +29,7 @@ export class CommandRepository {
             [commandName, commandDescription, id]
         );
     }
+    async deleteCommand(id: number): Promise<void> {
+        await pool.query('DELETE FROM commands WHERE id = $1', [id]);
+    }
 }
